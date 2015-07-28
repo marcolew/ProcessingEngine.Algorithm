@@ -56,4 +56,4 @@ namespace ProcessingEngine.Algorithm.ExampleImplementation
 	}
 }
 ```
-The implementation has two parameters which are used in this example to create a loop which simulates idle time in case of running "Run". We have one input property and one output property while within the run method the input property is directly assigned to the output. The setup method is not implemented in this example case.
+The implementation has two parameters which are used in this example to create a loop which simulates idle time in case of running "Run". We have one input property and one output property while within the run method the input property is directly assigned to the output. All properties are charaterized via a name (e.g. Result for the OutputAttribute) The method "Setup" is not implemented in this example case.
