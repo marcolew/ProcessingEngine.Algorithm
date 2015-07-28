@@ -2,6 +2,7 @@
 
 namespace ProcessingEngine.Algorithm.ExampleImplementation
 {
+	[Serializable]
 	public class ExampleAlgorithm: Algorithm
 	{
 		[ParameterAttribute("Number of Loops")]
@@ -10,6 +11,9 @@ namespace ProcessingEngine.Algorithm.ExampleImplementation
 		[ParameterAttribute("Milliseconds to Sleep")]
 		public int SleepTime { get; set;}
 
+		[InputAttribute("Input")]
+		public int Input { get; set;}
+
 		[OutputAttribute("Result")]
 		public int Output { get; set;}
 
@@ -17,11 +21,11 @@ namespace ProcessingEngine.Algorithm.ExampleImplementation
 		{
 			for(int i=0; i<LoopNumber; i++)
 			{
-				System.Threading.Thread.Sleep (Output);
+				System.Threading.Thread.Sleep (SleepTime);
 				Console.WriteLine (i);
 			}
 			Console.WriteLine ("Finished (from the Method)!");
-			Output = LoopNumber*SleepTime;
+			Output = Input;
 		}
 
 		public override void Setup ()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace ProcessingEngine.Algorithm
 {
@@ -14,16 +15,48 @@ namespace ProcessingEngine.Algorithm
 		/// <summary>
 		/// Return List of all parameters in the implemented algorithm
 		/// </summary>
-		public Dictionary<string, object> Parameters
+		public IEnumerable<PropertyInfo> ParameterProperties
 		{
 			get
 			{
-				var props = from p in this.GetType().GetProperties()
-					let attr = p.GetCustomAttributes(typeof(ParameterAttribute), true)
-						where attr.Length == 1
-					select new { Property = p, Attribute = attr.First() as ParameterAttribute };
+				var props = from p in this.GetType ().GetProperties ()
+				            let attr = p.GetCustomAttributes (typeof(ParameterAttribute), true)
+				            where attr.Length == 1
+				            select p; 
 
-				return null;
+				return props;
+			}
+		}
+
+		/// <summary>
+		/// Return List of all input properties in the implemented algorithm
+		/// </summary>
+		public IEnumerable<PropertyInfo> InputProperties
+		{
+			get
+			{
+				var props = from p in this.GetType ().GetProperties ()
+				            let attr = p.GetCustomAttributes (typeof(InputAttribute), true)
+				            where attr.Length == 1
+				            select p; 
+
+				return props;
+			}
+		}
+
+		/// <summary>
+		/// Return List of all output properties in the implemented algorithm
+		/// </summary>
+		public IEnumerable<PropertyInfo> OutputProperties
+		{
+			get
+			{
+				var props = from p in this.GetType ().GetProperties ()
+					let attr = p.GetCustomAttributes (typeof(OutputAttribute), true)
+						where attr.Length == 1
+					select p; 
+
+				return props;
 			}
 		}
 
