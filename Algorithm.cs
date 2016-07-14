@@ -70,5 +70,25 @@ namespace ProcessingEngine.Algorithm
 		/// </summary>
 		public abstract void Run();
 
-	}
+        /// <summary>
+        /// Porperty with the User Control which is used to define the parameters of the algorithm
+        /// </summary>
+	    public abstract System.Windows.Forms.UserControl GetParameterControl { get; }
+
+        /// <summary>
+        /// Eventhandler that can be invoked, if Parameters changed.
+        /// </summary>
+	    public event EventHandler ParametersChanged;
+
+        /// <summary>
+        /// The event-invoking method that derived classes can override.
+        /// </summary>
+        /// <param name="e">EventArgs</param>
+        protected virtual void OnParametersChanged(EventArgs e)
+        {
+            ParametersChanged?.Invoke(this, e);
+        }
+
+
+    }
 }
