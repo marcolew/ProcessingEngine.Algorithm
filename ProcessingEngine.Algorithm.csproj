@@ -39,5 +39,8 @@
     <Compile Include="OutputAttribute.cs" />
     <Compile Include="ParameterAttribute.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ProcessingEngine.Algorithm.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

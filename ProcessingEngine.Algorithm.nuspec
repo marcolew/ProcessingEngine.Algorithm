@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BIBA.ProcessingEngine.Algorithm</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>mlewandowski</authors>
+    <owners>mlewandowski</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Base Library for creating Algorithm Libraries</description>
+		<releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>dataanalytics algorithms</tags>
+  </metadata>
+</package>
