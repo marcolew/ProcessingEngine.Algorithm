@@ -5,7 +5,7 @@ The Libary provides an abstract class called "algorithm". By inheriting from thi
 
 The interface provides
 
-- A method "Train" which is used to prepare algorithms in terms of training, parameter estimation, etc.
+- A method "Setup" which is used to prepare algorithms in terms of training, parameter estimation, etc.
 - A method "Run" which is used to process data and write results to an output
 
 In addition Attributes are available which characterize properties as
@@ -16,44 +16,34 @@ In addition Attributes are available which characterize properties as
 
 ## Example
 
-A basic implementation example is provided within the code and can be executed from the Testconsole-Project.
+A basic implementation example is provided within the code and can be executed with the unit test projet.
 
 ```
-using System;
-
-namespace ProcessingEngine.Algorithm.ExampleImplementation
+namespace ProcessingEngine.Algorithm.Sample
 {
+	[PEAlgorithm("Sample")]
 	[Serializable]
-	public class ExampleAlgorithm: Algorithm
+	public class SampleAlgorithm:IAlgorithm
 	{
-		[ParameterAttribute("Number of Loops")]
-		public int LoopNumber { get; set;}
+		[Parameter("Faktor")]
+		public int Parameter { get; set; }
 
-		[ParameterAttribute("Milliseconds to Sleep")]
-		public int SleepTime { get; set;}
+		[Input("Input")]
+		public int Input { get; set; }
 
-		[InputAttribute("Input")]
-		public int Input { get; set;}
+		[Output("Output")]
+		public int Output { get; set; }
 
-		[OutputAttribute("Result")]
-		public int Output { get; set;}
-
-		public override void Run ()
+		public void Run()
 		{
-			for(int i=0; i<LoopNumber; i++)
-			{
-				System.Threading.Thread.Sleep (SleepTime);
-				Console.WriteLine (i);
-			}
-			Console.WriteLine ("Finished (Message from the Method)!");
-			Output = Input;
+			Output = Input * Parameter; 
 		}
 
-		public override void Setup ()
+		public void Setup()
 		{
-			throw new NotImplementedException ();
+			throw new NotNecessaryException("This Algorithm doesn't need a Setup!");
 		}
 	}
 }
 ```
-The implementation has two parameters which are used in this example to create a loop which simulates idle time in case of running "Run". We have one input property and one output property while within the run method the input property is directly assigned to the output. All properties are charaterized via a name (e.g. Result for the OutputAttribute) The method "Setup" is not implemented in this example case.
+The implementation has one parameter which is used as a factor multyplied with the input by running "Run". We have one input property and one output property while within the run method the input property is multyplied with the factor and then assigned to the output. All properties are charaterized via a name (e.g. Result for the OutputAttribute). The method "Setup" is not implemented in this example case.
